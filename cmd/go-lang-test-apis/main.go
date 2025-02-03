@@ -13,6 +13,10 @@ import (
 	"time"
 )
 
+/**
+ * @author Abhishek Kadavil
+ */
+
 func main() {
 	fmt.Print("welcome\n")
 
@@ -21,7 +25,7 @@ func main() {
 	//setup router
 	router := http.NewServeMux()
 
-	router.HandleFunc("POST /go/api/users", goapiuser.New())
+	router.HandleFunc("POST /go/api/users", goapiuser.NewUser())
 
 	//setup server
 	server := http.Server{
