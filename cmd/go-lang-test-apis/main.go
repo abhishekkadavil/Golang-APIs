@@ -21,7 +21,7 @@ func main() {
 	//setup router
 	router := http.NewServeMux()
 
-	router.HandleFunc("GET /go/api/users", goapiuser.New())
+	router.HandleFunc("POST /go/api/users", goapiuser.New())
 
 	//setup server
 	server := http.Server{
