@@ -14,13 +14,13 @@ type Config struct {
 }
 
 type HTTPserver struct {
-	Host string
+	Addr string `yaml:"address" env-required:"true"`
 }
 
 func MustLoad() *Config {
 	var configPath string
 
-	configPath = os.Getenv("CONFIG_PATH	")
+	configPath = os.Getenv("CONFIG_PATH")
 
 	if configPath == "" {
 		flags := flag.String("config", "", "Path to the cofiguration file")
@@ -30,7 +30,8 @@ func MustLoad() *Config {
 	}
 
 	if configPath == "" {
-		log.Fatal("Config path not set")
+		// log.Fatal("Config path not set")
+		configPath = "config/config.yaml"
 	}
 
 	if _, err := os.Stat(configPath); os.IsNotExist(err) {
