@@ -9,6 +9,8 @@ import (
 	"io"
 	"log/slog"
 	"net/http"
+
+	"github.com/go-playground/validator/v10"
 )
 
 /**
@@ -32,7 +34,12 @@ func NewUser() http.HandlerFunc {
 			response.WriteJson(w, http.StatusBadRequest, response.GeneralError(err))
 		}
 
-		// req validation
+		// Mandatory filed validation validation
+		if err := validator.New().Struct(gouser); err != nil {
+			validateErrs := err.(validator.ValidationErrors)
+			response.WriteJson(w, http.StatusUnprocessableEntity, response.ValidationError(validateErrs))
+			return
+		}
 
 		response.WriteJson(w, http.StatusCreated, map[string]string{"status": "OK"})
 	}
