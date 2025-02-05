@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"go-lang-test-apis/internal/config"
-	"go-lang-test-apis/internal/http/handlers/goapiuser"
+	"go-lang-test-apis/internal/http/handlers/student"
 	"log/slog"
 	"net/http"
 	"os"
@@ -25,7 +25,7 @@ func main() {
 	//setup router
 	router := http.NewServeMux()
 
-	router.HandleFunc("POST /go/api/users", goapiuser.NewUser())
+	router.HandleFunc("POST /go/api/users", student.NewUser())
 
 	//setup server
 	server := http.Server{

@@ -1,4 +1,4 @@
-package goapiuser
+package student
 
 import (
 	"encoding/json"
